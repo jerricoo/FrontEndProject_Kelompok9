@@ -1,0 +1,195 @@
+//Index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pajak PKB</title>
+     <link rel="stylesheet" href="style.css">
+
+</head>
+<script src="script.js"></script>
+<body>
+    <div class="Main-Container">
+        <div class="Judul">
+            <h1>Kalkulator Pajak PKB Mobil</h1>
+        </div>
+
+        <div class="Main-Content-Wrapper">
+            <div class="Panduan">
+                <p class="h1-panduan">Panduan</p>
+                <div class="accordion">
+                    <div class="accordion-header">Nilai Jual Kendaraan Bermotor (NJKB)</div>
+                    <div class="accordion-content">
+                        <p class="content">Masukan harga pasaran umum kendaraan yang anda miliki, 
+                            dan tetapkan berdasarkan harga pasaran yang umum di minggu pertama bulan 
+                            desember tahun pajak sebelumnya. NJKB untuk kendaraan baru ditetapkan dengan 
+                            Permendagri.</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header">Kepemilikan Ke-</div>
+                    <div class="accordion-content">
+                        <p class="content">Kolom ini diisi dengan status kepemilikan kendaraan bermotor.</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header">Jenis Koefisien Bobot</div>
+                    <div class="accordion-content">
+                        <p class="content">Pada kolom ini diisi dengan koefisien bobot sesuai dengan 
+                            jenis kendaraan bermotor yang dimiliki.</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header">Tarif PKB</div>
+                    <div class="accordion-content">
+                        <p class="content">Tarif PKB ditetapkan paling tinggi 1,2% untuk kepemilikan 
+                            pertama dan paling tinggi 6% untuk kepemilikan selanjutnya. Tarif PKB diatur 
+                            sesuai dengan Peraturan Daerah di tiap-tiap provinsi.</p>
+                    </div>
+                </div>
+                <div class="accordion"> 
+                    <div class="accordion-header">Biaya SWDKLLJ</div>
+                    <div class="accordion-content"> 
+                        <p class="content">SWDKLLJ merupakan sumbangan yang wajib dibayarkan oleh para 
+                            pengusaha/ pemilik alat angkutan lalu lintas jalan kepada perusahaan yang 
+                            menyelenggarakan Dana Kecelakaan Lalu Lintas Jalan. SWDKLLJ diatur dalam 
+                            Peraturan Menteri Keuangan Nomor 16/PMK.010/2017. Jumlah pada kolom ini adalah 
+                            jumlah SWDKLLJ ditambah biaya pembuatan kartu dana/sertifikat sebesar Rp3.000.</p>
+                    </div>
+                </div>
+                <div class="accordion"> 
+                    <div class="accordion-header">Tarif Opsen PKB</div>
+                    <div class="accordion-content">
+                        <p class="content">Tarif Opsen PKB ditetapkan sebesar 66% dari PKB 
+                            terutang sesuai dengan Pasal 83 ayat (1) huruf a UU HKPD.</p> 
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header">PKB Terutang</div>
+                    <div class="accordion-content"> 
+                        <p class="content">PKB terutang dihitung dari NJKB dikalikan Jenis 
+                            Koefisien Bobot dikalikan Tarif PKB.</p>
+                    </div>
+                </div>
+                <div class="accordion"> 
+                    <div class="accordion-header">Opsen PKB Terutang</div>
+                    <div class="accordion-content"> 
+                        <p class="content">Opsen PKB Terutang dihitung dari PKB Terutang 
+                            dikalikan Tarif Opsen PKB.</p>
+                    </div>
+                </div>
+                <div class="accordion"> 
+                    <div class="accordion-header">Total PKB + Opsen PKB + SWDKLLJ</div>
+                    <div class="accordion-content"> 
+                        <p class="content">Kolom ini berisi hasil penjumlahan PKB Terutang, 
+                            dan Opsen PKB Terutang, dan Biaya SWDKLLJ.</p> 
+                    </div>
+                </div>
+                <script>
+                    const headers = document.querySelectorAll(".accordion-header");
+                    headers.forEach(header => {
+                        header.addEventListener("click", () => {
+                            const accordion = header.parentElement;
+                            accordion.classList.toggle("active");
+                        });
+                    });
+                </script>
+            </div>
+
+            <div class="Right-Content-Wrapper">
+                <div class="Penjelasan">
+                    <h2>Apa Itu PKB??</h2>
+                    <p class="content">Pajak Kendaraan Bermotor (PKB) merupakan kewajiban tahunan bagi pemilik 
+                        kendaraan yang digunakan untuk mendukung pembangunan daerah. Agar lebih mudah memperkirakan 
+                        jumlah pajak yang harus dibayarkan, tersedia kalkulator PKB sederhana yang membantu melakukan 
+                        perhitungan secara praktis. Dengan memasukkan informasi dasar seperti jenis kendaraan, nilai jual 
+                        kendaraan bermotor (NJKB), wilayah registrasi, serta jumlah kepemilikan, pengguna dapat mengetahui 
+                        estimasi PKB yang terutang.</p>
+                </div>
+
+                <div class="Form-Container">
+                    <div class="Input-Data">
+                        <label>Jenis Kendaraan</label>
+                        <select>
+                            <option value="Motor">Motor</option>
+                            <option value="Mobil">Mobil</option>
+                        </select> 
+                        <label>NJKB</label>
+                        <input type="number" value="0">
+
+                        <label>Provinsi</label>
+                        <select>
+                            <option value="DKI Jakarta">DKI Jakarta</option>
+                            <option value="Jawa Barat">Jawa Barat</option>
+                            <option value="Jawa Tengah">Jawa Tengah</option>
+                            <option value="Sumatra Utara">Sumatra Utara</option>
+                            <option value="Sumatra Selatan">Sumatra Selatan</option>
+                            <option value="Sulawesi Utara">Sulawesi Utara</option>
+                            <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                            <option value="Kalimantan Barat">Kalimantan Barat</option>
+                            <option value="Banten">Banten</option>
+                        </select>
+
+                        <label>Kepemilikan ke</label>
+                        <input type="number" value="1">
+
+                        <label>Jenis Koefisien Bobot</label>
+                       <select> 
+                        <option value="" selected disabled>Pilih Jenis Koefisien</option>
+                        <option 
+                            value="1" 
+                            title="Mobil penumpang roda tiga dan mobil barang roda tiga, sepeda motor roda dua, sepeda motor roda tiga penumpang, dan sepeda motor roda tiga barang">
+                            Koefisien 1
+                        </option>
+                        <option 
+                            value="1.025" 
+                            title="Sedan">
+                            Koefisien 1.025
+                        </option>
+                        <option 
+                            value="1.050" 
+                            title="Jeep dan Minibus">
+                            Koefisien 1.050
+                        </option>
+                        <option 
+                            value="1.085" 
+                            title="Blind van, pick up, pick up box, dan microbus">
+                            Koefisien 1.085
+                        </option>
+                        <option 
+                            value="1.1" 
+                            title="Bus">
+                            Koefisien 1.1
+                        </option>
+                        </select>
+                        </div>
+                            <div class="Hasil-Data">
+                            <label>Biaya SWDKLLJ</label>
+                            <select name="swdkllj" id="swdkllj">
+                            <option value="" selected disabled>Pilih SWDKLLJ</option>
+                            <option value="A" title="Golongan A Rp3,000, mencangkup sepeda motor kapasitas mesin 50 cc ke bawah, mobil ambulans, mobil jenazah, dan mobil pemadan kebakaran">Golongan A Rp3,000</option>
+                            <option value="B" title="Golongan B, Rp23,000, mencangkup traktor, bulldozer, forklift, mobil, derek, excavator, crane, dan sejenisnya">Golongan B Rp23,000</option>
+                            <option value="C1" title="Golongan C1, Rp35,000, mencakup sepeda motor, sepeda kumbang, dan skuter kapasitas mesin di atas 50 cc sampai dengan 250 cc, dan kendaraan bermotor roda tiga">Golongan C1 Rp35,000</option>
+                            <option value="C2" title="Golongan C2, Rp83,000, mencakup sepeda motor dan skuter berkapasitas mesin di atas 250 cc">Golongan C2 Rp83,000</option>
+                            </select>
+                            <label>Tarif PKB</label>
+                            <input type="text" disabled readonly>
+                            <label>PKB Terutang</label>
+                            <input type="text" disabled readonly>
+                            <label>Opsen PKB Terutang</label>
+                            <input type="text" disabled readonly>
+                            <label>Total PKB + Opsen PKB + SWDKLLJ</label>
+                            <input type="text" disabled readonly>
+                            <div class="btn-container">
+                            <button type="reset" class="btn btn-reset">Reset</button>
+                            <button type="submit" class="btn btn-hitung">Hitung</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
