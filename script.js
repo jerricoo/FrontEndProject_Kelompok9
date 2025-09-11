@@ -2,63 +2,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnHitung = document.querySelector(".btn-hitung");
     const btnReset = document.querySelector(".btn-reset");
 
-    // Ambil elemen input
-    const jenisKendaraan = document.querySelector(".Input-Data select:nth-of-type(1)");
-    const inputNJKB = document.querySelector(".Input-Data input[type='number']");
-    const provinsi = document.querySelector(".Input-Data select:nth-of-type(2)");
-    const kepemilikanKe = document.querySelector(".Input-Data input[type='number']");
-    const koefisienBobot = document.querySelector(".Input-Data select:nth-of-type(3)");
+    const inputNJKB = document.querySelectorAll(".Input-Data input")[0];
+    const selectProvinsi = document.querySelectorAll(".Input-Data select")[0];
+    const selectKepemilikan = document.querySelectorAll(".Input-Data select")[1];
+    const selectBobot = document.querySelectorAll(".Input-Data select")[2];
 
-    // Elemen hasil
-    const swdklljSelect = document.querySelector("#swdkllj");
-    const tarifPKB = document.querySelectorAll(".Hasil-Data input")[0];
-    const pkbTerutang = document.querySelectorAll(".Hasil-Data input")[1];
-    const opsenPKB = document.querySelectorAll(".Hasil-Data input")[2];
-    const totalPKB = document.querySelectorAll(".Hasil-Data input")[3];
+    const biayaSWDKLLJ = document.querySelectorAll(".Hasil-Data input")[0];
+    const tarifPKB = document.querySelectorAll(".Hasil-Data input")[1];
+    const pkbTerutang = document.querySelectorAll(".Hasil-Data input")[2];
+    const opsenPKB = document.querySelectorAll(".Hasil-Data input")[3];
+    const totalPKB = document.querySelectorAll(".Hasil-Data input")[4];
 
-    // Mapping SWDKLLJ
-    const swdklljMapping = {
-        "A": 3000,
-        "B": 23000,
-        "C1": 35000,
-        "C2": 83000
-    };
-
-    // Fungsi Hitung Pajak
     function hitungPajak() {
         const njkb = parseFloat(inputNJKB.value) || 0;
-        const kepemilikan = parseInt(kepemilikanKe.value) || 1;
-        const bobot = parseFloat(koefisienBobot.value) || 1;
-
-        // Tentukan tarif dasar PKB (bisa disesuaikan per daerah)
-        let tarifDasar = 0.02; // default kepemilikan pertama
+        const kepemilikan = parseInt(selectKepemilikan.value);
+        const bobot = parseFloat(selectBobot.value);
+        let tarifDasar = 0.02;
         if (kepemilikan === 2) tarifDasar = 0.025;
         else if (kepemilikan === 3) tarifDasar = 0.03;
         else if (kepemilikan === 4) tarifDasar = 0.035;
         else if (kepemilikan === 5) tarifDasar = 0.04;
         else if (kepemilikan >= 6) tarifDasar = 0.045;
 
-        // PKB terutang = NJKB × Tarif Dasar × Koefisien Bobot
+     
         const pkb = njkb * tarifDasar * bobot;
-
-        // Opsen PKB = 66% × PKB
+        
         const opsen = pkb * 0.66;
+        let swdkllj = 143000; 
 
-        // SWDKLLJ
-        const swdklljVal = swdklljMapping[swdklljSelect.value] || 0;
+        const total = pkb + opsen + swdkllj;
 
-        // Total
-        const total = pkb + opsen + swdklljVal;
-
-        // Tampilkan hasil
+        biayaSWDKLLJ.value = swdkllj.toLocaleString("id-ID");
         tarifPKB.value = (tarifDasar * 100).toFixed(2) + " %";
         pkbTerutang.value = pkb.toLocaleString("id-ID");
         opsenPKB.value = opsen.toLocaleString("id-ID");
         totalPKB.value = total.toLocaleString("id-ID");
     }
 
-    // Fungsi Reset
     function resetForm() {
+        biayaSWDKLLJ.value = "";
         tarifPKB.value = "";
         pkbTerutang.value = "";
         opsenPKB.value = "";
